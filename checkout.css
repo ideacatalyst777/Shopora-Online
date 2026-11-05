@@ -1,0 +1,253 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-color: #e9eaf2;
+    color: #222;
+}
+
+header {
+    background-color: #171719;
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h2 {
+    color: #f0683f;
+    font-size: 28px;
+}
+
+header nav {
+    display: flex;
+    gap: 40px;
+   
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+header nav a:hover {
+    color: #f0683f;
+}
+
+.checkout-container {
+    width: 90%;
+    max-width: 650px;
+    margin: 50px auto;
+    background-color: #171719;
+    color: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.checkout-container h1 {
+    text-align: center;
+    color: #f0683f;
+    margin-bottom: 12px;
+    font-size: 32px;
+}
+
+.checkout-container p {
+    text-align: center;
+    color: #ddd;
+    margin-bottom: 30px;
+}
+
+/* Form */
+#checkout-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#checkout-form label {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+#checkout-form input,
+#checkout-form textarea {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    background-color: #f5f5f5;
+    color: #222;
+    font-size: 15px;
+    outline: none;
+}
+
+#checkout-form input:focus,
+#checkout-form textarea:focus {
+    border: 2px solid #f0683f;
+}
+
+#checkout-form textarea {
+    resize: vertical;
+}
+
+/* Total */
+#checkout-total {
+    color: #f0683f;
+    font-size: 24px;
+    margin: 15px 0 25px;
+}
+
+/* Place Order Button */
+#checkout-form button {
+    background-color: #f0683f;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+#checkout-form button:hover {
+    background-color: #d94e29;
+}
+
+/* Footer */
+.shopora-footer {
+    background-color: #171719;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    margin-top: 40px;
+}
+
+.shopora-footer h2 {
+    color: #f0683f;
+    margin-bottom: 10px;
+}
+
+.shopora-footer p {
+    color: #ddd;
+}
+
+.footer-links {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #f0683f;
+}
+
+.copyright {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Tablet */
+@media screen and (max-width: 768px) {
+
+    header {
+        padding: 15px 20px;
+    }
+
+    .checkout-container {
+        width: 92%;
+        padding: 25px;
+        margin: 30px auto;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+
+    header h2 {
+        font-size: 23px;
+    }
+
+    header nav {
+        gap: 12px;
+    }
+
+    header nav a {
+        font-size: 13px;
+    }
+
+    .checkout-container {
+        width: 94%;
+        padding: 20px;
+    }
+
+    .checkout-container h1 {
+        font-size: 26px;
+    }
+
+    #checkout-total {
+        font-size: 21px;
+    }
+
+    #checkout-form button {
+        font-size: 15px;
+    }
+}
+
+header {
+    position: relative;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+    header nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        background-color: #171719;
+        padding: 15px;
+        gap: 15px;
+        z-index: 1000;
+    }
+
+    header nav.active {
+        display: flex;
+    }
+
+    header nav a {
+        font-size: 18px;
+        text-align: center;
+        padding: 10px;
+    }
+}

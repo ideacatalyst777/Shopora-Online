@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopora - Checkout</title>
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+
+    <header>
+    <h2>Shopora</h2>
+
+    <button class="menu-toggle" id="menu-toggle">☰</button>
+
+    <nav id="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="cart.html">View Cart</a>
+    </nav>
+</header>
+
+    <div class="checkout-container">
+
+        <h1>Checkout</h1>
+        <p>Please enter your delivery details.</p>
+
+        <form id="checkout-form">
+
+            <label for="name">Full Name</label>
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your full name"
+                required>
+
+            <label for="phone">Phone Number</label>
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Enter your 10-digit phone number"
+                pattern="[0-9]{10}"
+                maxlength="10"
+                required>
+
+            <label for="email">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email address"
+                required>
+
+            <label for="address">Delivery Address</label>
+            <textarea
+                id="address"
+                placeholder="Enter your complete delivery address"
+                rows="4"
+                required></textarea>
+
+            <h2 id="checkout-total">Total: ₹0</h2>
+
+            <button type="submit">Place Order</button>
+
+        </form>
+
+    </div>
+
+    <footer class="shopora-footer">
+
+        <h2>Shopora</h2>
+
+        <p>Your Style, Your Choice, Your Shopping Destination.</p>
+
+        <p class="copyright">
+            © 2026 Shopora. All Rights Reserved.
+        </p>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="checkout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="checkout.js"></script>
+
+<script>
+    let menuToggle = document.getElementById("menu-toggle");
+    let navMenu = document.getElementById("nav-menu");
+
+    menuToggle.addEventListener("click", function() {
+        navMenu.classList.toggle("active");
+    });
+</script>
+</body>
+</body>
+</html>
+
+
