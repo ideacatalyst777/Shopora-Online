@@ -1,16 +1,16 @@
+(function () {
+    emailjs.init({
+        publicKey: "lcNv7bFyD4xtvhO6w"
+    });
+})();
+
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-emailjs.init({
-    publicKey: "mBY2neNOa5GFYIa66"
-});
-
-let adminEmail = "anuradhabhandi50@gmail.com";
 
 function calculateTotal() {
 
     let total = 0;
 
-    cart.forEach(function(product) {
+    cart.forEach(function (product) {
         total += product.price * product.quantity;
     });
 
@@ -20,7 +20,9 @@ function calculateTotal() {
 
 calculateTotal();
 
-document.getElementById("checkout-form").addEventListener("submit", function(event) {
+const checkoutForm = document.getElementById("checkout-form");
+
+checkoutForm.addEventListener("submit", function (event) {
 
     event.preventDefault();
 
@@ -29,54 +31,85 @@ document.getElementById("checkout-form").addEventListener("submit", function(eve
         return;
     }
 
-    let name = document.getElementById("name").value;
-    let phone = document.getElementById("phone").value;
-    let email = document.getElementById("email").value;
-    let address = document.getElementById("address").value;
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const address = document.getElementById("address").value.trim();
+
+    if (!name || !phone || !email || !address) {
+        alert("Please fill in all the fields.");
+        return;
+    }
+
+
+    if (!/^[0-9]{10}$/.test(phone)) {
+        alert("Please enter a valid 10-digit phone number.");
+        return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert("Please enter a valid email address.");
+    return;
+}
 
     let total = 0;
-
-    cart.forEach(function(product) {
-        total += product.price * product.quantity;
-    });
-
     let orderDetails = "";
 
-    cart.forEach(function(product) {
-        orderDetails += product.name + " - Quantity: " +
-            product.quantity + " - Price: ₹" +
-            product.price + "\n";
+    cart.forEach(function (product) {
+
+        total += product.price * product.quantity;
+
+        orderDetails += product.name +
+            " - Quantity: " + product.quantity +
+            " - Price: ₹" + product.price + "\n";
     });
 
-    let templateParams = {
+    const adminParams = {
         customer_name: name,
         customer_phone: phone,
         customer_email: email,
         delivery_address: address,
         order_details: orderDetails,
-        total_amount: total,
-        to_email: email
+        total_amount: total
     };
 
-    Promise.all([
+    const customerParams = {
+        to_email: email,
+        customer_name: name,
+        customer_phone: phone,
+        customer_email: email,
+        delivery_address: address,
+        order_details: orderDetails,
+        total_amount: total
+    };
 
-        emailjs.send(
-            "service_1fh9w4l",
-            "template_fr86kcj",
-            templateParams
-        ),
+    const submitButton = checkoutForm.querySelector(
+        "button[type='submit']"
+    );
 
-        emailjs.send(
-            "service_1fh9w4l",
-            "template_fr86kcj",
-            {
-                ...templateParams,
-                to_email: adminEmail
-            }
-        )
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
 
-    ])
-    .then(function() {
+    emailjs.send(
+        "service_1fh9w4l",
+        "template_fr86kcj",
+        adminParams
+    )
+
+    .then(function (response) {
+
+        console.log("Admin email sent:", response);
+        return emailjs.send(
+            "service_m042bec",
+            "template_lzm1bmq",
+            customerParams
+        );
+
+    })
+
+    .then(function (response) {
+
+        console.log("Customer email sent:", response);
 
         alert("Order placed successfully! Emails sent to customer and admin.");
 
@@ -85,11 +118,20 @@ document.getElementById("checkout-form").addEventListener("submit", function(eve
         window.location.href = "index.html";
 
     })
-    .catch(function(error) {
 
-        alert("Email sending failed. Please try again.");
+    .catch(function (error) {
 
-        console.log(error);
+        console.log("Email Error:", error);
+        console.log("Error details:", error.text);
+
+        alert("Unable to send order emails. Please check EmailJS settings.");
+
+    })
+
+    .finally(function () {
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Place Order";
 
     });
 
