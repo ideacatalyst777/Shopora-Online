@@ -7,22 +7,23 @@
     <title>Shopora - My Cart</title>
     <link rel="stylesheet" href="cart.css">
 </head>
+
 <body>
 
     <header>
-    <div class="logo">
-        <h2>Shopora</h2>
-    </div>
+        <div class="logo">
+            <h2>Shopora</h2>
+        </div>
 
-    <button class="menu-toggle" id="menu-toggle">☰</button>
+        <button class="menu-toggle" id="menu-toggle">☰</button>
 
-    <nav id="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="index.html#products">Products</a>
-        <a href="cart.html">Cart</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-</header>
+        <nav id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="index.html#products">Products</a>
+            <a href="cart.html">Cart</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
 
     <section class="cart-container">
 
@@ -33,33 +34,38 @@
         <h3 id="total">Total: ₹0</h3>
 
         <div class="cart-actions">
+
             <button class="clear-btn" onclick="clearCart()">
                 Clear Cart
             </button>
 
-            <a href="checkout.html" class="checkout-btn">
+            <button class="checkout-btn" onclick="goToCheckout()">
                 Proceed to Checkout
-            </a>
+            </button>
+
         </div>
 
     </section>
+
+
+    <footer class="shopora-footer">
+
+        <h2>Shopora</h2>
+
+        <p>Your Style, Your Choice, Your Shopping Destination.</p>
+
+        <p class="copyright">
+            © 2026 Shopora. All Rights Reserved.
+        </p>
+
+    </footer>
+
     
-<footer class="shopora-footer">
-
-    <h2>Shopora</h2>
-
-    <p>Your Style, Your Choice, Your Shopping Destination.</p>
-
-    <p class="copyright">
-        © 2026 Shopora. All Rights Reserved.
-    </p>
-
-</footer>
-
-
     <script>
 
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+       
         function displayCart() {
 
             let cartItems = document.getElementById("cart-items");
@@ -68,7 +74,8 @@
             cartItems.innerHTML = "";
 
             if (cart.length === 0) {
-                cartItems.innerHTML = "<p class='empty-cart'>Your cart is empty!</p>";
+                cartItems.innerHTML =
+                    "<p class='empty-cart'>Your cart is empty!</p>";
             }
 
             cart.forEach(function(product, index) {
@@ -100,7 +107,8 @@
 
                             <p>Subtotal: ₹${subtotal}</p>
 
-                            <button class="remove-btn" onclick="removeProduct(${index})">
+                            <button class="remove-btn"
+                                onclick="removeProduct(${index})">
                                 Remove
                             </button>
 
@@ -116,6 +124,7 @@
 
         }
 
+     
         function increaseQuantity(index) {
 
             cart[index].quantity++;
@@ -136,6 +145,7 @@
 
         }
 
+    
         function removeProduct(index) {
 
             cart.splice(index, 1);
@@ -146,12 +156,19 @@
 
         function clearCart() {
 
-            cart = [];
+            if (cart.length === 0) {
+                alert("Your cart is already empty!");
+                return;
+            }
 
-            saveCart();
+            if (confirm("Are you sure you want to clear the cart?")) {
+                cart = [];
+                saveCart();
+            }
 
         }
 
+  
         function saveCart() {
 
             localStorage.setItem("cart", JSON.stringify(cart));
@@ -160,20 +177,44 @@
 
         }
 
+        function goToCheckout() {
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            if (cart.length === 0) {
+
+                alert("Your cart is empty! Please add products first.");
+
+            } else {
+
+                window.location.href = "checkout.html";
+
+            }
+
+        }
+
+       
         displayCart();
 
     </script>
-    <script src="cart.js"></script>
-<script>
-    let menuToggle = document.getElementById("menu-toggle");
-    let navMenu = document.getElementById("nav-menu");
 
-    menuToggle.addEventListener("click", function() {
-        navMenu.classList.toggle("active");
-    });
-</script>
-</body>
+   
+    <script>
+
+        let menuToggle = document.getElementById("menu-toggle");
+        let navMenu = document.getElementById("nav-menu");
+
+        if (menuToggle && navMenu) {
+
+            menuToggle.addEventListener("click", function() {
+                navMenu.classList.toggle("active");
+            });
+
+        }
+
+    </script>
 
 </body>
 </html>
+
 
