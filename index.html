@@ -7,22 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-    <div class="logo">
-        <h2>Shopora</h2>
-    </div>
 
-    <button class="menu-toggle" id="menu-toggle">
-        ☰
-    </button>
+    <header>
+        <div class="logo">
+            <h2>Shopora</h2>
+        </div>
 
-    <nav id="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="#products">Products</a>
-        <a href="cart.html">Cart</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-</header>
+        <button class="menu-toggle" id="menu-toggle">
+            ☰
+        </button>
+
+        <nav id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="#products">Products</a>
+            <a href="cart.html">Cart</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
 
     <section class="hero">
         <h1>Welcome to Shopora</h1>
@@ -30,10 +32,13 @@
         <a href="#products" class="shop-btn">Shop Now</a>
     </section>
 
+
+  
     <section id="products">
 
         <h2>Our Products</h2>
 
+    
         <div class="filter-container">
 
             <input
@@ -50,18 +55,25 @@
                 <option value="Accessories">Accessories</option>
             </select>
 
+            <select id="sortOption">
+                <option value="default">Sort By</option>
+                <option value="low-high">Price: Low to High</option>
+                <option value="high-low">Price: High to Low</option>
+                <option value="name-az">Name: A to Z</option>
+                <option value="name-za">Name: Z to A</option>
+            </select>
+
         </div>
 
+
+        <!-- Product Cards -->
         <div class="product-container">
 
             <div class="product" data-category="Shoes">
                 <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" alt="Sports Shoes">
                 <h3>Sports Shoes</h3>
                 <p>₹999</p>
-                <button class="add-cart"
-                    data-name="Sports Shoes"
-                    data-price="999"
-                    data-image="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400">
+                <button class="add-cart" data-name="Sports Shoes" data-price="999" data-image="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400">
                     Add to Cart
                 </button>
             </div>
@@ -70,10 +82,7 @@
                 <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" alt="Smart Watch">
                 <h3>Smart Watch</h3>
                 <p>₹1499</p>
-                <button class="add-cart"
-                    data-name="Smart Watch"
-                    data-price="1499"
-                    data-image="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400">
+                <button class="add-cart" data-name="Smart Watch" data-price="1499" data-image="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400">
                     Add to Cart
                 </button>
             </div>
@@ -82,10 +91,7 @@
                 <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400" alt="Hand Bag">
                 <h3>Hand Bag</h3>
                 <p>₹799</p>
-                <button class="add-cart"
-                    data-name="Hand Bag"
-                    data-price="799"
-                    data-image="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400">
+                <button class="add-cart" data-name="Hand Bag" data-price="799" data-image="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400">
                     Add to Cart
                 </button>
             </div>
@@ -94,10 +100,7 @@
                 <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" alt="Headphones">
                 <h3>Headphones</h3>
                 <p>₹1199</p>
-                <button class="add-cart"
-                    data-name="Headphones"
-                    data-price="1199"
-                    data-image="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400">
+                <button class="add-cart" data-name="Headphones" data-price="1199" data-image="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400">
                     Add to Cart
                 </button>
             </div>
@@ -106,10 +109,7 @@
                 <img src="https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=500" alt="Smart Phone">
                 <h3>Smart Phone</h3>
                 <p>₹12999</p>
-                <button class="add-cart"
-                    data-name="Smart Phone"
-                    data-price="12999"
-                    data-image="https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=500">
+                <button class="add-cart" data-name="Smart Phone" data-price="12999" data-image="https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=500">
                     Add to Cart
                 </button>
             </div>
@@ -118,10 +118,7 @@
                 <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400" alt="Laptop">
                 <h3>Laptop</h3>
                 <p>₹45999</p>
-                <button class="add-cart"
-                    data-name="Laptop"
-                    data-price="45999"
-                    data-image="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400">
+                <button class="add-cart" data-name="Laptop" data-price="45999" data-image="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400">
                     Add to Cart
                 </button>
             </div>
@@ -130,10 +127,7 @@
                 <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400" alt="Men's Shirt">
                 <h3>Men's Shirt</h3>
                 <p>₹699</p>
-                <button class="add-cart"
-                    data-name="Men's Shirt"
-                    data-price="699"
-                    data-image="https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400">
+                <button class="add-cart" data-name="Men's Shirt" data-price="699" data-image="https://images.unsplash.com/photo-1603252109303-2751441dd157?w=400">
                     Add to Cart
                 </button>
             </div>
@@ -142,10 +136,7 @@
                 <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500" alt="Women's Dress">
                 <h3>Women's Dress</h3>
                 <p>₹1299</p>
-                <button class="add-cart"
-                    data-name="Women's Dress"
-                    data-price="1299"
-                    data-image="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500">
+                <button class="add-cart" data-name="Women's Dress" data-price="1299" data-image="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500">
                     Add to Cart
                 </button>
             </div>
@@ -154,10 +145,7 @@
                 <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400" alt="Sunglasses">
                 <h3>Sunglasses</h3>
                 <p>₹499</p>
-                <button class="add-cart"
-                    data-name="Sunglasses"
-                    data-price="499"
-                    data-image="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400">
+                <button class="add-cart" data-name="Sunglasses" data-price="499" data-image="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400">
                     Add to Cart
                 </button>
             </div>
@@ -166,10 +154,7 @@
                 <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?w=400" alt="Wallet">
                 <h3>Wallet</h3>
                 <p>₹399</p>
-                <button class="add-cart"
-                    data-name="Wallet"
-                    data-price="399"
-                    data-image="https://images.unsplash.com/photo-1627123424574-724758594e93?w=400">
+                <button class="add-cart" data-name="Wallet" data-price="399" data-image="https://images.unsplash.com/photo-1627123424574-724758594e93?w=400">
                     Add to Cart
                 </button>
             </div>
@@ -178,10 +163,7 @@
                 <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400" alt="Keyboard">
                 <h3>Keyboard</h3>
                 <p>₹899</p>
-                <button class="add-cart"
-                    data-name="Keyboard"
-                    data-price="899"
-                    data-image="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400">
+                <button class="add-cart" data-name="Keyboard" data-price="899" data-image="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400">
                     Add to Cart
                 </button>
             </div>
@@ -190,10 +172,7 @@
                 <img src="https://images.unsplash.com/photo-1527814050087-3793815479db?w=400" alt="Wireless Mouse">
                 <h3>Wireless Mouse</h3>
                 <p>₹499</p>
-                <button class="add-cart"
-                    data-name="Wireless Mouse"
-                    data-price="499"
-                    data-image="https://images.unsplash.com/photo-1527814050087-3793815479db?w=400">
+                <button class="add-cart" data-name="Wireless Mouse" data-price="499" data-image="https://images.unsplash.com/photo-1527814050087-3793815479db?w=400">
                     Add to Cart
                 </button>
             </div>
@@ -202,10 +181,7 @@
                 <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400" alt="Bluetooth Speaker">
                 <h3>Bluetooth Speaker</h3>
                 <p>₹999</p>
-                <button class="add-cart"
-                    data-name="Bluetooth Speaker"
-                    data-price="999"
-                    data-image="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400">
+                <button class="add-cart" data-name="Bluetooth Speaker" data-price="999" data-image="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400">
                     Add to Cart
                 </button>
             </div>
@@ -214,10 +190,7 @@
                 <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400" alt="Perfume">
                 <h3>Perfume</h3>
                 <p>₹599</p>
-                <button class="add-cart"
-                    data-name="Perfume"
-                    data-price="599"
-                    data-image="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400">
+                <button class="add-cart" data-name="Perfume" data-price="599" data-image="https://images.unsplash.com/photo-1541643600914-78b084683601?w=400">
                     Add to Cart
                 </button>
             </div>
@@ -226,10 +199,7 @@
                 <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400" alt="Books">
                 <h3>Books</h3>
                 <p>₹299</p>
-                <button class="add-cart"
-                    data-name="Books"
-                    data-price="299"
-                    data-image="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400">
+                <button class="add-cart" data-name="Books" data-price="299" data-image="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400">
                     Add to Cart
                 </button>
             </div>
@@ -237,13 +207,21 @@
         </div>
     </section>
 
+
+  
     <footer id="contact">
         <p>© 2026 Shopora. All Rights Reserved.</p>
         <p>Happy Shopping!</p>
     </footer>
 
+
     <script src="script.js"></script>
+
 </body>
 </html>
+
+
+
+
 
 
