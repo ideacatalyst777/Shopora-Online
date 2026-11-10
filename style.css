@@ -398,3 +398,45 @@ nav a:hover {
         text-align: center;
     }
 }
+
+
+#searchInput,
+#categoryFilter,
+#sortOption {
+    padding: 12px 15px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+}
+
+#searchInput {
+    width: 250px;
+}
+
+#categoryFilter,
+#sortOption {
+    width: 200px;
+    cursor: pointer;
+}
+
+#searchInput:focus,
+#categoryFilter:focus,
+#sortOption:focus {
+    border-color: #f0683f;
+}
+
+
+@media (max-width: 600px) {
+
+    #searchInput,
+    #categoryFilter,
+    #sortOption {
+        width: 90%;
+        display: block;
+        margin: 10px auto;
+        box-sizing: border-box;
+    }
+
+}
