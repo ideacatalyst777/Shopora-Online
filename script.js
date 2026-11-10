@@ -16,7 +16,6 @@ buttons.forEach(function(button) {
 
         if (existingProduct) {
             existingProduct.quantity++;
-            existingProduct.image = image;
         } else {
             cart.push({
                 name: name,
@@ -28,54 +27,128 @@ buttons.forEach(function(button) {
 
         localStorage.setItem("cart", JSON.stringify(cart));
 
-alert(name + " added to cart!");
+        alert(name + " added to cart!");
 
-window.location.href = "cart.html";
+        window.location.href = "cart.html";
 
     });
 
 });
 
-
 let searchInput = document.getElementById("searchInput");
 let categoryFilter = document.getElementById("categoryFilter");
+let sortOption = document.getElementById("sortOption");
 
-let products = document.querySelectorAll(".product");
+let productContainer = document.querySelector(".product-container");
 
-function filterProducts() {
+let products = productContainer
+    ? Array.from(productContainer.querySelectorAll(".product"))
+    : [];
+
+function getPrice(product) {
+    let button = product.querySelector(".add-cart");
+    return Number(button.dataset.price);
+}
+
+function getName(product) {
+    let button = product.querySelector(".add-cart");
+    return button.dataset.name;
+}
+
+function filterAndSortProducts() {
+
+    if (!productContainer) {
+        return;
+    }
 
     let searchValue = searchInput.value.toLowerCase();
-    let selectedCategory = categoryFilter.value;
+    let categoryValue = categoryFilter.value;
+    let sortValue = sortOption.value;
 
-    products.forEach(function(product) {
+    // Filter products
+    let filteredProducts = products.filter(function(product) {
 
-        let productName = product.querySelector("h3").innerText.toLowerCase();
+        let productName = getName(product).toLowerCase();
         let productCategory = product.dataset.category;
 
         let matchesSearch = productName.includes(searchValue);
 
         let matchesCategory =
-            selectedCategory === "all" ||
-            productCategory === selectedCategory;
+            categoryValue === "all" ||
+            productCategory === categoryValue;
 
-        if (matchesSearch && matchesCategory) {
-            product.style.display = "block";
-        } else {
-            product.style.display = "none";
-        }
+        return matchesSearch && matchesCategory;
 
+    });
+
+
+    // Sort products
+    if (sortValue === "low-high") {
+
+        filteredProducts.sort(function(a, b) {
+            return getPrice(a) - getPrice(b);
+        });
+
+    }
+
+    else if (sortValue === "high-low") {
+
+        filteredProducts.sort(function(a, b) {
+            return getPrice(b) - getPrice(a);
+        });
+
+    }
+
+    else if (sortValue === "name-az") {
+
+        filteredProducts.sort(function(a, b) {
+            return getName(a).localeCompare(getName(b));
+        });
+
+    }
+
+    else if (sortValue === "name-za") {
+
+        filteredProducts.sort(function(a, b) {
+            return getName(b).localeCompare(getName(a));
+        });
+
+    }
+
+
+    // Display sorted and filtered products
+    products.forEach(function(product) {
+        product.style.display = "none";
+    });
+
+    filteredProducts.forEach(function(product) {
+        product.style.display = "";
+        productContainer.appendChild(product);
     });
 
 }
 
-searchInput.addEventListener("input", filterProducts);
+if (searchInput) {
+    searchInput.addEventListener("input", filterAndSortProducts);
+}
 
-categoryFilter.addEventListener("change", filterProducts);
+if (categoryFilter) {
+    categoryFilter.addEventListener("change", filterAndSortProducts);
+}
 
+if (sortOption) {
+    sortOption.addEventListener("change", filterAndSortProducts);
+}
+
+filterAndSortProducts();
 
 let menuToggle = document.getElementById("menu-toggle");
 let navMenu = document.getElementById("nav-menu");
 
-menuToggle.addEventListener("click", function() {
-    navMenu.classList.toggle("active");
-});
+if (menuToggle && navMenu) {
+
+    menuToggle.addEventListener("click", function() {
+        navMenu.classList.toggle("active");
+    });
+
+}
